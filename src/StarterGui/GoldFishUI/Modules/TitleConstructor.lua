@@ -48,6 +48,9 @@ function module.new(name,title,parent)
 	newTitle.buttons = 0;
 
 	function newTitle:AddButton(buttonName,iconAssetId,hoverColor,onClick)
+		if newTitle:FindFirstChild(buttonName) then
+			error("[ GFA ]  Button name must be unique!");
+		end;
 		local TextButton = Instance.new("TextButton",newTitle.BaseTitle);
 		local ImageLabel = Instance.new("ImageLabel",TextButton);
 		local UICorner = Instance.new("UICorner",TextButton);
@@ -107,6 +110,14 @@ function module.new(name,title,parent)
 			end);
 			onClick();
 		end);
+	end;
+
+	function newTitle:RemoveButton(buttonName)
+		if newTitle:FindFirstChild(buttonName) then
+			newTitle.buttons -= 1;
+			newTitle.WindowTitle.Size = UDim2.new(.958-(.104*newTitle.buttons),0,newTitle.WindowTitle.Size.Y.Scale,0);
+			newTitle[buttonName]:Destroy();
+		end;
 	end;
 
 	function newTitle:SetVisible(visibility)
