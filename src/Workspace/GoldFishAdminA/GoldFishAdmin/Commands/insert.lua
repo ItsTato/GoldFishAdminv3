@@ -7,7 +7,7 @@ return function(ctx)
 	if success and model then
 		model.Parent = game.Workspace;
 	else
-		local window = utilModule:CreatePopUpWindow("Error!","The asset couldn't be loaded.");
+		local window = ctx.UtilsModule:CreatePopUpWindow("Error!","The asset couldn't be loaded.");
 		window:Send(executer);
 	end;
 end;

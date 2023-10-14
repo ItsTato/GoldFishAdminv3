@@ -31,18 +31,19 @@ return {
 
 		release = function(ctx)
 			local utils = ctx.Utils;
+			local args = ctx.Command.Args;
 			local plr = utils.guessPlayer(args[1]);
 			detainedPlrs[plr] = false;
 		end;
-		
+
 	};
-	
+
 	aliases = {
-		
+
 		cuff = "detain";
-		
+
 		undetain = "release";
 		uncuff = "release";
-		
+
 	};
 };
