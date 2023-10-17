@@ -20,6 +20,12 @@ InfoWindow:AddButton("closeButton",6031094678,Color3.fromRGB(255, 98, 101),funct
 end);
 InfoWindow:SetVisible(false);
 
+local CommandsWindow = TitleConstructor.new("CommandsWindow","Commands",UI);
+CommandsWindow:AddButton("closeButton",6031094678,Color3.fromRGB(255,98,101),function()
+	CommandsWindow:SetVisible(false);
+end);
+CommandsWindow:SetVisible(false);
+
 --[[
 NewWindow:AddButton("backButton",6031091000,Color3.fromRGB(80,80,80),function()
 	print("Went back to the future!");
@@ -83,8 +89,12 @@ function addCategory(buttonName:string,categoryName:string,categoryDesc:string,c
 	end);
 end;
 
-addCategory("AboutButton","About","What is this?",6022668907,function()
+addCategory("AboutButton","About","What is this?",6026568227,function()
 	InfoWindow:ToggleVisibility();
+end);
+
+addCategory("CommandsButton","Commands","List of commands.",6022668907,function()
+	CommandsWindow:ToggleVisibility();
 end);
 
 -- Now in generator function

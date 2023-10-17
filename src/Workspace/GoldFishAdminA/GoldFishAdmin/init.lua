@@ -76,9 +76,9 @@ local goldFishAdminMainModule = {};
 
 function goldFishAdminMainModule.new()
 	local returned = {};
-	
+
 	returned.settings = defaultConfig;
-	
+
 	function returned:Destroy()
 		for _, Player in pairs(game:GetService("Players"):GetChildren()) do
 			if Player.PlayerGui:FindFirstChild("GoldFishAdmin Hud") then
@@ -99,14 +99,14 @@ function goldFishAdminMainModule.new()
 		function returned:Start()
 			return nil;
 		end;
-		
+
 		script:Destroy();
 	end;
-	
+
 	function returned:SetSetting(key,value)
 		returned.settings[key] = value;
 	end;
-	
+
 	function returned:SetSettings(newSettingsList)
 		for Setting, Value in pairs(newSettingsList) do
 			if returned.settings[Setting] ~= Value then
@@ -118,28 +118,28 @@ function goldFishAdminMainModule.new()
 	function returned:SetMultipleSettings(listWithModified)
 		returned:SetSettings(listWithModified);
 	end;
-	
+
 	function returned:Start()
 		local start =   tick();
-		
+
 		-- SCRIPT STORAGE ----------------------------------------------------------
 		-- DON'T TOUCH OR MODIFY THIS IF YOU DON'T KNOW WHAT YOU'RE DOING! ---------
 
 		local UI = script.UI;
 
 		local Storage = script.Storage;
-		
+
 		local Commands = script.Commands;
-		
+
 		local CommandGroups = script.CommandGroups;
 
 		local Internal = Storage.Internal;
 		local Icon = Internal.Icon;
-		
+
 		local InternalAPI = Internal.InternalAPI;
 		local Utils = InternalAPI.utils;
 		local Ctx = InternalAPI.ctx;
-		
+
 		local Items = Storage.Items;
 
 		local Models = Storage.Models;
@@ -271,17 +271,17 @@ function goldFishAdminMainModule.new()
 				end;
 			end);
 		end);
-		
+
 		task.wait();
-		
+
 		goldFishEvents.SendCommand.OnServerEvent:Connect(function(plr,cmd)
 			if returned.settings["Command Bar Enabled"] then
 				processCommand(plr,cmd);
 			end;
 		end);
-		
+
 		local adminInstance = {};
-		
+
 		function adminInstance:RegisterCommandsIn(path:Folder)
 			local a = #path:GetChildren();
 			local b = 0;
@@ -314,11 +314,11 @@ function goldFishAdminMainModule.new()
 			end;
 			utilModule:Log("Registered "..aStr.." & "..bStr);
 		end;
-		
+
 		function adminInstance:RegisterCommandsInRoot()
 			adminInstance:RegisterCommandsIn(Commands);
 		end;
-		
+
 		function adminInstance:RegisterCommandGroupsIn(path:Folder)
 			local a = 0;
 			local b = #path:GetChildren();
@@ -372,16 +372,16 @@ function goldFishAdminMainModule.new()
 			end;
 			utilModule:Log("Registed "..aStr..", "..bStr.." & "..cStr);
 		end;
-		
+
 		function adminInstance:RegisterCommandGroupsInRoot()
 			adminInstance:RegisterCommandGroupsIn(CommandGroups);
 		end;
-		
+
 		utilModule:Log("Started in "..tick()-start.."s");
-		
+
 		return adminInstance;
 	end;
-	
+
 	return returned;
 end;
 

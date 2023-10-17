@@ -48,8 +48,8 @@ function module.new(name,title,parent)
 	newTitle.buttons = 0;
 
 	function newTitle:AddButton(buttonName,iconAssetId,hoverColor,onClick)
-		if newTitle:FindFirstChild(buttonName) then
-			error("[ GFA ]  Button name must be unique!");
+		if newTitle.BaseTitle:FindFirstChild(buttonName) then
+			error(" | GFA |  Button name must be unique!");
 		end;
 		local TextButton = Instance.new("TextButton",newTitle.BaseTitle);
 		local ImageLabel = Instance.new("ImageLabel",TextButton);
